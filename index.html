@@ -6,23 +6,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Document</title>
+  <script src="https://kit.fontawesome.com/a413ea44fb.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <title>Ricky and Morty api</title>
   <style>
-    img:hover {
-      transform: scale(1.1);
-      padding: 1em;
+    .dark {
+      background-color: black;
+      color: white;
     }
   </style>
 </head>
 
-<body>
-  <h1 class="text-center font-black text-3xl mt-5 underline">Rick and morty - API</h1>
-  <div class=" flex flex-col w-80 m-auto mt-7 border-2 border-gray-900 p-7 rounded-lg">
-    <p>Insertar numero:</p>
-    <input type="number" class="border-2 border-black rounded-lg mt-4" id="input" maxlength="1">
-    <button id="btn-buscar"
-      class="bg-blue-400 w-24 mt-5 m-auto rounded-md text-white font-bold px-3 py-2">Buscar</button>
-  </div>
+<body class="overflow-x-hidden font-mono">
+  <main>
+    <div class="flex items-center justify-between pt-1 px-5">
+      <h1 class="text-center font-black text-3xl mt-5">Rick and morty - API</h1>
+      <div class="dark-mode">
+        <img src="./assets/img/moon.svg" class="w-6 cursor-pointer" id="btn-toggle-dark">
+      </div>
+    </div>
+    <div class=" flex flex-col w-80 m-auto mt-7 border-2 border-gray-900 p-7 rounded-lg form-container">
+      <p class="text-2xl text-center font-bold">Insert a number:</p>
+      <input type="number" class="border-2 border-black rounded-lg mt-4" id="input" maxlength="1" min="1">
+      <button id="btn-buscar"
+        class="bg-blue-400 w-24 mt-5 m-auto rounded-md text-white font-bold px-3 py-2 hover:scale-105">Buscar</button>
+    </div>
+  </main>
 
   <script src="./app.js"></script>
 </body>
