@@ -20,7 +20,6 @@ $(document).ready(function () {
         else {
           let data = await fetch("https://rickandmortyapi.com/api/character/" + idCharacter)
           let result = await data.json();
-          // console.log(result);
           input.value = "";
 
 
@@ -54,7 +53,7 @@ $(document).ready(function () {
   }))
   $("#btn-toggle-dark").click(function () {
     document.body.classList.toggle("dark")
-    formContainer.classList.add("border-white")
+    formContainer.classList.toggle("border-white")
     input.classList.add("text-black")
     if (document.body.classList.contains("dark")) {
       btnToggleDarkMode.src = "./assets/img/sun.svg"
