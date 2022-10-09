@@ -14,10 +14,10 @@ $(document).ready(function () {
         idCharacter = input.value;
         if (idCharacter == "") {
           alert("Input is empty, please insert a number");
-        } else if (idCharacter > 826) {
+        } else if (idCharacter > 826 || idCharacter == 0) {
           alert("Introduced number is not disponible")
-        }
-        else {
+          input.value = ""
+        } else {
           let data = await fetch("https://rickandmortyapi.com/api/character/" + idCharacter)
           let result = await data.json();
           input.value = "";
