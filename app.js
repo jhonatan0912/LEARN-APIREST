@@ -1,66 +1,38 @@
-$(document).ready(function () {
-  console.clear()
-  const input = document.getElementById('input')
-  const btnSearch = document.getElementById('btn-buscar')
-  const container = document.createElement('div');
-  const btnToggleDarkMode = document.getElementById("btn-toggle-dark")
-  const formContainer = document.querySelector(".form-container")
+const input = document.getElementById('input')
 
-  btnSearch.addEventListener('click', (e => {
-    e.preventDefault();
+let container = document.getElementById('container')
 
-    const getData = async (idCharacter = "") => {
-      try {
-        idCharacter = input.value;
-        if (idCharacter == "") {
-          alert("Input is empty, please insert a number");
-        } else if (idCharacter > 826 || idCharacter == 0) {
-          alert("Introduced number is not disponible")
-          input.value = ""
-        } else {
-          let data = await fetch("https://rickandmortyapi.com/api/character/" + idCharacter)
-          let result = await data.json();
-          input.value = "";
+const getData = async () => {
+  let response = await fetch('https://rickandmortyapi.com/api/character/');
+  let { results } = await response.json();
+
+  console.log(results);
 
 
-          let article = document.createElement('article')
-          let imgCharacter = document.createElement('img')
-          let pName = document.createElement('p')
-          let pStatus = document.createElement('p')
-          let pSpecies = document.createElement('p')
-          let pGender = document.createElement('p')
 
+  input.addEventListener('change', (e) => {
 
-          imgCharacter.src = `${result.image}`;
-          pName.innerText = `Nombre: ${result.name}`;
-          pStatus.innerText = `Estado: ${result.status}`;
-          pSpecies.innerText = `Especie: ${result.species}`;
-          pGender.innerText = `Genero: ${result.gender}`;
-          article.append(imgCharacter, pName, pStatus, pSpecies, pGender)
-          container.append(article)
-          container.classList.add('container', "grid", "grid-cols-2", "gap-2", "sm:grid-cols-3", "lg:grid-cols-4", "m-auto")
-          // document.body.append(article)
-          document.body.append(container)
-          article.classList.add("font-bold", "p-5", "bg-red-400", "w-60", "m-auto", "mt-5", "rounded-2xl");
-        }
+    for (let i = 1; i < results.length; i++) {
+      if (results[i].name.toLowerCase().includes(e.target.value)) {
+        let div = document.createElement('div')
 
-      } catch (error) {
-        console.log(error);
+        let result = results[i];
+        div.innerHTML += `
+        <img src=${result.image}>
+        <p><b>Name:</b> ${result.name}</p>
+        <p><b>Gender:</b> ${result.gender}</p>
+        <p><b>Specie:</b> ${result.species}</p>
+        `
+        div.classList.add('p-4', 'border', 'rounded')
+        container.append(div)
+        document.body.append(container)
       }
-
     }
-    getData()
-  }))
-  $("#btn-toggle-dark").click(function () {
-    document.body.classList.toggle("dark")
-    formContainer.classList.toggle("border-white")
-    input.classList.add("text-black")
-    if (document.body.classList.contains("dark")) {
-      btnToggleDarkMode.src = "./assets/img/sun.svg"
-    } else {
-      btnToggleDarkMode.src = "./assets/img/moon.svg"
-    }
-  });
+  })
 
-});
 
+
+}
+
+
+getData()
