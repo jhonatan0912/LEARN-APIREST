@@ -1,4 +1,4 @@
-const input = document.getElementById('input')
+let input = document.getElementById('input')
 
 let container = document.getElementById('container')
 
@@ -36,3 +36,12 @@ const getData = async () => {
 
 
 getData()
+
+$("#btn-toggle-dark").click(function () {
+  document.body.classList.toggle("dark")
+  if (document.body.classList.contains("dark")) {
+    btnToggleDarkMode.src = "./assets/img/sun.svg"
+  } else {
+    btnToggleDarkMode.src = "./assets/img/moon.svg"
+  }
+});
